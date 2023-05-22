@@ -1,0 +1,73 @@
+<div>
+  {{#each products}}
+    <p>
+      id:
+      {{this.id}}
+      Title:
+      {{this.title}}
+      Description:
+      {{this.description}}
+      Category:
+      {{this.category}}
+      Price:
+      {{this.price}}
+      Code:
+      {{{this.code}}}
+      Stock:
+      {{{this.stock}}}
+      Thumbnails:
+      {{{this.thumbnails}}}
+      Status:
+      {{{this.status}}}
+    </p>
+    <hr />
+  {{/each}}
+
+  {{#each limitedProducts}}
+    <p>
+      id:
+      {{this.id}}
+      Title:
+      {{this.title}}
+      Description:
+      {{this.description}}
+      Category:
+      {{this.category}}
+      Price:
+      {{this.price}}
+      Code:
+      {{{this.code}}}
+      Stock:
+      {{{this.stock}}}
+      Thumbnails:
+      {{{this.thumbnails}}}
+      Status:
+      {{{this.status}}}
+    </p>
+    <hr />
+  {{/each}}
+
+  {{#each productById}}
+    <p>
+      id:
+      {{this.id}}
+      Title:
+      {{this.title}}
+      Description:
+      {{this.description}}
+      Category:
+      {{this.category}}
+      Price:
+      {{this.price}}
+      Code:
+      {{{this.code}}}
+      Stock:
+      {{{this.stock}}}
+      Thumbnails:
+      {{{this.thumbnails}}}
+      Status:
+      {{{this.status}}}
+    </p>
+    <hr />
+  {{/each}}
+</div>
