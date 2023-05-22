@@ -1,0 +1,41 @@
+{{#each products}}
+  <div>
+    <h2>{{title}}</h2>
+    <p>{{description}}</p>
+    <p>ID: {{id}}</p>
+    <p>Código: {{code}}</p>
+    <p>Categoría: {{category}}</p>
+    <p>Stock: {{stock}}</p>
+    <img height="150px" width="150px" src={{thumbnails}} alt="" />
+    <p>Precio: ${{price}}</p>
+    <p>Status: {{status}}</p>
+  </div>
+{{/each}}
+
+{{#each limitedProducts}}
+  <div>
+    <h2>{{title}}</h2>
+    <p>{{description}}</p>
+    <p>ID: {{id}}</p>
+    <p>Código: {{code}}</p>
+    <p>Categoría: {{category}}</p>
+    <p>Stock: {{stock}}</p>
+    <img height="150px" width="150px" src={{thumbnails}} alt="" />
+    <p>Precio: ${{price}}</p>
+    <p>Status: {{status}}</p>
+  </div>
+{{/each}}
+
+{{#each productById}}
+  <div>
+    <h2>{{title}}</h2>
+    <p>{{description}}</p>
+    <p>ID: {{id}}</p>
+    <p>Código: {{code}}</p>
+    <p>Categoría: {{category}}</p>
+    <p>Stock: {{stock}}</p>
+    <img height="150px" width="150px" src={{thumbnails}} alt="" />
+    <p>Precio: ${{price}}</p>
+    <p>Status: {{status}}</p>
+  </div>
+{{/each}}

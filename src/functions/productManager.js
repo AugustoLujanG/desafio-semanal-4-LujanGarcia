@@ -4,7 +4,7 @@ export default class ProductManager {
   constructor(fileName) {
     this.fileName = fileName;
     this.products = [];
-    this.thumbnailsPath = "public/";
+    this.thumbnailsPath = "/";
     this.loadProducts();
   }
 

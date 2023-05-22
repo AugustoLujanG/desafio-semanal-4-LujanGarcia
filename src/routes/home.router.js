@@ -1,22 +1,22 @@
 import express from "express";
 import ProductManager from "../functions/productManager.js";
 
-export const test = express.Router();
+export const home = express.Router();
 
 const productManager = new ProductManager("products.json");
 
 // GET con limit
 
-test.get("/", async (req, res) => {
+home.get("/", async (req, res) => {
   try {
     const limit = req.query.limit;
     const products = await productManager.getProducts();
 
     if (limit) {
       const limitedProducts = products.slice(0, parseInt(limit));
-      res.status(200).render("test", { limitedProducts });
+      res.status(200).render("home", { limitedProducts });
     } else {
-      res.status(200).render("test", { products });
+      res.status(200).render("home", { products });
     }
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -25,13 +25,13 @@ test.get("/", async (req, res) => {
 
 // GET por ID
 
-test.get("/:pid", async (req, res) => {
+home.get("/:pid", async (req, res) => {
   try {
     const id = req.params.pid;
     const productById = await productManager.getProductById(parseInt(id));
 
     if (productById) {
-      res.status(200).render("test", { productById: [productById] });
+      res.status(200).render("home", { productById: [productById] });
     } else {
       res.status(404).json({ message: "Producto no encontrado" });
     }
