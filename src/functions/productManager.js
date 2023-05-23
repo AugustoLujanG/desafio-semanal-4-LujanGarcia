@@ -136,7 +136,7 @@ export default class ProductManager {
     console.log(`Producto ${id} actualizado`);
   }
 
-  deleteProduct(id) {
+  async deleteProduct(id) {
     const productIndex = this.products.findIndex(
       (product) => product.id === id
     );

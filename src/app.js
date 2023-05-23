@@ -6,9 +6,12 @@ import { productsRouter } from "./routes/products.router.js";
 import { home } from "./routes/home.router.js";
 import { realTimeProducts } from "./routes/realtimeproducts.router.js";
 import { __dirname } from "./utils.js";
+import ProductManager from "./functions/productManager.js";
 
 const app = express();
 const PORT = 8080;
+
+const productManager = new ProductManager("products.json");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -27,21 +30,22 @@ const httpServer = app.listen(PORT, () => {
 
 const socketServer = new Server(httpServer);
 
-socketServer.on("connection", (socket) => {
-  //BACK MANDA MSGS AL FRONT
-  setInterval(() => {
-    socket.emit("msg_back_front", {
-      msg: "hola mundo desde el back " + Date.now(),
-      from: "server",
-    });
-    socketServer.emit();
-  }, 1000);
+socketServer.on("connection", socket => {
+  console.log(`New clinet: ${socket.id}`)
 
-  //BACK ATAJA LOS MSGS DEL FRONT
-  socket.on("msg_front_back", (msg) => {
-    console.log(msg);
-  });
-});
+  socket.on("new-product", async newProd => {
+    try {
+      await productManager.addProduct({...newProd});
+
+      // Actualizar lista después de agregar producto
+      const productsList = await productManager.getProducts();
+      console.log(productsList)
+      socketServer.emit("products", productsList) 
+    } catch (err) {
+      console.log(err)
+    }
+  })
+})
 
 //TODOS MIS ENDPOINTS
 app.use("/api/products", productsRouter);
