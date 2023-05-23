@@ -11,7 +11,7 @@ import ProductManager from "./functions/productManager.js";
 const app = express();
 const PORT = 8080;
 
-const productManager = new ProductManager("products.json");
+const productManager = new ProductManager("db/products.json");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -30,22 +30,35 @@ const httpServer = app.listen(PORT, () => {
 
 const socketServer = new Server(httpServer);
 
-socketServer.on("connection", socket => {
-  console.log(`New clinet: ${socket.id}`)
+socketServer.on("connection", (socket) => {
+  console.log(`New clinet: ${socket.id}`);
 
-  socket.on("new-product", async newProd => {
+  socket.on("new-product", async (newProd) => {
     try {
-      await productManager.addProduct({...newProd});
+      await productManager.addProduct({ ...newProd });
 
       // Actualizar lista después de agregar producto
       const productsList = await productManager.getProducts();
-      console.log(productsList)
-      socketServer.emit("products", productsList) 
+      console.log(productsList);
+      socketServer.emit("products", productsList);
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-  })
-})
+  });
+
+  socket.on("delete-product", async (productId) => {
+    try {
+      await productManager.deleteProduct(productId);
+  
+      // Actualizar lista después de eliminar producto
+      const productsList = await productManager.getProducts();
+      console.log(productsList);
+      socketServer.emit("products", productsList);
+    } catch (err) {
+      console.log(err);
+    }
+  });
+});
 
 //TODOS MIS ENDPOINTS
 app.use("/api/products", productsRouter);

@@ -9,18 +9,30 @@ const codeProd = document.getElementById("codeProd");
 const stockProd = document.getElementById("stockProd");
 const url = document.getElementById("urlInput");
 
+const deleteProductForm = document.getElementById("deleteProductForm");
+const id = document.getElementById("productId");
+
 socket.on("products", (productsList) => {
-  console.log(productsList);
-  document.getElementById(
-    "dynamic-list"
-  ).innerHTML = `<h2>(${productsList.title})</h2> <p>${productsList.id}</p> <p>${productsList.description}</p> <p>Categoría: ${productsList.category}</p> <p>Stock: ${productsList.stock}</p> <img height="150px" width="150px" src=${productsList.url} alt="" /> <p>Precio: ${productsList.price}</p> <p>Status: ${productsList.status}</p>`;
-  // return acc + "<h2>" + item.title + "</h2>" + "<p>" + item.description + "</h2>" + "<p>" + "ID: " + "" +"</p>
-  // <p>Código: {{code}}</p>
-  // <p>Categoría: {{category}}</p>
-  // <p>Stock: {{stock}}</p>
-  // <img height="150px" width="150px" src={{thumbnails}} alt="" />
-  // <p>Precio: ${{price}}</p>
-  // <p>Status: {{status}}</p>"
+  const productListContainer = document.getElementById("dynamic-list");
+  productListContainer.innerHTML = ""; // Limpiar el contenido existente
+
+  productsList.forEach((product) => {
+    const productHTML = `
+      <div>
+        <h2>${product.title}</h2>
+        <p>${product.description}</p>
+        <p>ID: ${product.id}</p>
+        <p>Código: ${product.code}</p>
+        <p>Categoría: ${product.category}</p>
+        <p>Stock: ${product.stock}</p>
+        <img height="150px" width="150px" src=${product.thumbnails[0]} alt="" />
+        <p>Precio: $${product.price}</p>
+        <p>Status: ${product.status}</p>
+      </div>
+    `;
+
+    productListContainer.insertAdjacentHTML("beforeend", productHTML);
+  });
 });
 
 addProduct.addEventListener("submit", (e) => {
@@ -28,10 +40,18 @@ addProduct.addEventListener("submit", (e) => {
   const newProduct = {
     title: titleProd.value,
     description: descProd.value,
-    category: catProd.value,
-    price: parseInt(priceProd.value),
     code: codeProd.value,
+    category: catProd.value,
+    thumbnails: url.value,
     stock: parseInt(stockProd.value),
+    price: parseInt(priceProd.value),
   };
   socket.emit("new-product", newProduct);
+  addProduct.reset();
+});
+
+deleteProductForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  socket.emit("delete-product", parseInt(productId.value));
+  deleteProductForm.reset()
 });

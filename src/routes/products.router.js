@@ -3,7 +3,7 @@ import ProductManager from "../functions/productManager.js";
 
 export const productsRouter = express.Router();
 
-const productManager = new ProductManager("products.json");
+const productManager = new ProductManager("db/products.json");
 
 // GET con limit
 

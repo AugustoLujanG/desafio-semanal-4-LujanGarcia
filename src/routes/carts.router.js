@@ -3,7 +3,7 @@ import CartManager from "../functions/cartManager.js";
 
 export const cartsRouter = express.Router();
 
-const cartManager = new CartManager("carts.json");
+const cartManager = new CartManager("db/carts.json");
 
 // GET todos los carritos
 

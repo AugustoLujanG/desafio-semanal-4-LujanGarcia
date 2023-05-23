@@ -1,4 +1,4 @@
-<div id="prodcutList">
+<div id="dynamic-list">
   {{#each products}}
     <h2>{{title}}</h2>
     <p>{{description}}</p>
@@ -10,8 +10,6 @@
     <p>Precio: ${{price}}</p>
     <p>Status: {{status}}</p>
   {{/each}}
-
-  <div id="dynamic-list"></div>
 </div>
 
 {{#each limitedProducts}}
@@ -86,7 +84,7 @@
 
 <form id="deleteProductForm">
   <h2>Eliminar Producto</h2>
-  <input type="text" name="productId" placeholder="ID del Producto" required />
+  <input type="number" id="productId" name="productId" placeholder="ID del Producto" required />
   <button type="submit">Eliminar</button>
 </form>
 
