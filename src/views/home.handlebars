@@ -1,41 +1,59 @@
-{{#each products}}
-  <div>
-    <h2>{{title}}</h2>
-    <p>{{description}}</p>
-    <p>ID: {{id}}</p>
-    <p>Código: {{code}}</p>
-    <p>Categoría: {{category}}</p>
-    <p>Stock: {{stock}}</p>
-    <img height="150px" width="150px" src={{thumbnails}} alt="" />
-    <p>Precio: ${{price}}</p>
-    <p>Status: {{status}}</p>
-  </div>
-{{/each}}
+<div class="row">
+  {{#each products}}
+    <div class="col-md-3">
+      <div class="card">
+        <img class="card-img-top" src={{thumbnails}} alt="" />
+        <div class="card-body">
+          <h2 class="card-title">{{title}}</h2>
+          <p class="card-text">{{description}}</p>
+          <p class="card-text">ID: {{id}}</p>
+          <p class="card-text">Código: {{code}}</p>
+          <p class="card-text">Categoría: {{category}}</p>
+          <p class="card-text">Stock: {{stock}}</p>
+          <p class="card-text">Precio: ${{price}}</p>
+          <p class="card-text">Status: {{status}}</p>
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</div>
 
-{{#each limitedProducts}}
-  <div>
-    <h2>{{title}}</h2>
-    <p>{{description}}</p>
-    <p>ID: {{id}}</p>
-    <p>Código: {{code}}</p>
-    <p>Categoría: {{category}}</p>
-    <p>Stock: {{stock}}</p>
-    <img height="150px" width="150px" src={{thumbnails}} alt="" />
-    <p>Precio: ${{price}}</p>
-    <p>Status: {{status}}</p>
-  </div>
-{{/each}}
+<div class="row">
+  {{#each limitedProducts}}
+    <div class="col-md-3">
+      <div class="card">
+        <img class="card-img-top" src={{thumbnails}} alt="" />
+        <div class="card-body">
+          <h2 class="card-title">{{title}}</h2>
+          <p class="card-text">{{description}}</p>
+          <p class="card-text">ID: {{id}}</p>
+          <p class="card-text">Código: {{code}}</p>
+          <p class="card-text">Categoría: {{category}}</p>
+          <p class="card-text">Stock: {{stock}}</p>
+          <p class="card-text">Precio: ${{price}}</p>
+          <p class="card-text">Status: {{status}}</p>
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</div>
 
-{{#each productById}}
-  <div>
-    <h2>{{title}}</h2>
-    <p>{{description}}</p>
-    <p>ID: {{id}}</p>
-    <p>Código: {{code}}</p>
-    <p>Categoría: {{category}}</p>
-    <p>Stock: {{stock}}</p>
-    <img height="150px" width="150px" src={{thumbnails}} alt="" />
-    <p>Precio: ${{price}}</p>
-    <p>Status: {{status}}</p>
-  </div>
-{{/each}}
+<div class="row">
+  {{#each productById}}
+    <div class="col-md-3">
+      <div class="card">
+        <img class="card-img-top" src={{thumbnails}} alt="" />
+        <div class="card-body">
+          <h2 class="card-title">{{title}}</h2>
+          <p class="card-text">{{description}}</p>
+          <p class="card-text">ID: {{id}}</p>
+          <p class="card-text">Código: {{code}}</p>
+          <p class="card-text">Categoría: {{category}}</p>
+          <p class="card-text">Stock: {{stock}}</p>
+          <p class="card-text">Precio: ${{price}}</p>
+          <p class="card-text">Status: {{status}}</p>
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</div>
